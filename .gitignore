@@ -1,3 +1,5 @@
 local_setting.py
 
 requirements.txt
+
+db.sqlite3
