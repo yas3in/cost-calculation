@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'calculation/css/calculater.css' %}">
+    <title>صفحه محاسبه</title>
+</head>
+<body>
+    <div class="content">
+        <form action="{% url 'calculater' %}" method="post">
+                {% csrf_token %}
+                سلام {{request.user}} عزیز
+                <style>
+                    .errorlist { display: none; } /* خطاهای فرم را پنهان می‌کند */
+                    label { 
+                        display: none; 
+                    }
+                </style>
+                {{ form.as_p }}
+            <button type="submit" name="submit"> تایید </button>
+        </form>
+    </div>
+</body>
+</html>
