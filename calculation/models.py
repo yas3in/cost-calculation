@@ -19,12 +19,15 @@ class Calculater(models.Model):
     
     @classmethod
     def add(cls, user, cost, date, description):
-        create = Calculater.objects.create(
-            user=user,
-            cost=cost,
-            date=date,
-            description=description
-        )
-        create.save()
-        return create
+        if user and cost:
+            if date is None:
+                date=jdatetime.date.today()
+            create = Calculater.objects.create(
+                user=user,
+                cost=cost,
+                date=date,
+                description=description
+            )
+            create.save()
+            return create
  

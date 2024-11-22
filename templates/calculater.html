@@ -30,7 +30,7 @@
                     }
                 </style>
                 {{ form.as_p }}
-                <input type="hidden" name="next" value="{{request.biuld_absolute_url}}">
+                <input type="hidden" name="next" value="{{ request.build_absolute_uri }}">
             <button class="submit" type="submit" name="submit"> تایید </button>
         </form>
     </div>

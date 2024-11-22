@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse, HttpResponseRedirect
 from calculation.models import Calculater
 from calculation.forms import GetDataForm
 from django.contrib.auth.decorators import login_required
@@ -13,21 +13,28 @@ def index(request):
 
 
 @login_required
-def calculater(request):
-    form = GetDataForm(request.POST, {'date': jdatetime.date.today()})
+def insert_data(request):
+    form = GetDataForm({'date': jdatetime.date.today(), 'user': request.user})
     if form.is_valid() is not None:
-        form.save(user=request.user)
+        form.save()
+        print(request.POST)
         return render(request, 'calculater.html', {'form': form})
     else:
-        return HttpResponse(form.errors)
+        return Http404
     
+ 
+@require_POST
+@login_required
+def calculater(request):
+    form = GetDataForm(request.POST)
+    print(request.POST)
+    if form.is_valid() is not None:
+        form.save()
+    response = request.POST.get('next', '/')
+    return HttpResponseRedirect(response)
     
+       
 def show_data(request):
-    user = Calculater.objects.all()
-    data = pd.DataFrame(
-        {
-            'users': user.user,
-            'cost': user.cost
-         }
-    )
-    return HttpResponse(data)
+    user = Calculater.objects.all().values()
+    data = pd.DataFrame(user)
+    print(data['description'])
