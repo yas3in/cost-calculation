@@ -3,13 +3,14 @@ from django.contrib.auth.models import User
 from django.db.models.functions import Coalesce
 from django.db.models import Sum, Count, Q
 from django_jalali.db import models as jmodels
+import jdatetime
 
 
 class Calculater(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user")
-    date = jmodels.jDateField()
     cost = models.BigIntegerField()
     description = models.TextField(null=True, blank=True)
+    date = jmodels.jDateField()
 
  
     def __str__(self):
@@ -27,16 +28,3 @@ class Calculater(models.Model):
         create.save()
         return create
  
-class AllCost(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='all_cost')
-    amount = models.BigIntegerField()
-    
-    
-    def users(self):
-        user = User.objects.all()
- 
-    @classmethod
-    def costing(cls, users):
-        for user in users:
-            cal = Calculater.objects.filter(user=user).annotate(sum=Sum('cost'))
-            return cal
