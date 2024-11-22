@@ -17,10 +17,21 @@
                     .errorlist { display: none; } /* خطاهای فرم را پنهان می‌کند */
                     label { 
                         display: none; 
+                        width: 100%;
+                    }
+                    textarea {
+                    height: 50px;
+                    width: 170px;
+                    padding: 5px;
+                    box-sizing: border-box;
+                    border-radius: 4px;
+                    font-size: 13px;
+                    resize: none;
                     }
                 </style>
                 {{ form.as_p }}
-            <button type="submit" name="submit"> تایید </button>
+                <input type="hidden" name="next" value="{{request.biuld_absolute_url}}">
+            <button class="submit" type="submit" name="submit"> تایید </button>
         </form>
     </div>
 </body>

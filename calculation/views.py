@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from calculation.models import Calculater
 import jdatetime, datetime
 from calculation.forms import GetDataForm
@@ -13,14 +13,10 @@ def index(request):
 
 @login_required
 def calculater(request):
-    date = jdatetime.date.today()
-    form = GetDataForm({'date': str(date), 'user': request.user})
-    response = {}
-    response['cost'] = request.POST.get('cost', None)
-    response['date'] = request.POST.get('date', None)
-    response['description'] = request.POST.get('description', None)
+    form = GetDataForm(request.POST)
     if form.is_valid():
-        Calculater.objects.create(user=request.user, cost=response['cost'], description=response['description'], date=response['date'])
+        form.save(user=request.user)
         return render(request, 'calculater.html', {'form': form})
     else:
-        return Http404
+        return HttpResponse(form.errors)
+    
