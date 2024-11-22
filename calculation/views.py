@@ -27,7 +27,6 @@ def insert_data(request):
 @login_required
 def calculater(request):
     form = GetDataForm(request.POST)
-    print(request.POST)
     if form.is_valid() is not None:
         form.save()
     response = request.POST.get('next', '/')
