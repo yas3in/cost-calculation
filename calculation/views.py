@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 import pandas as pd
 import jdatetime
+from django.contrib.auth.models import User
 
 
 def index(request):
@@ -34,6 +35,20 @@ def calculater(request):
     
        
 def show_data(request):
-    user = Calculater.objects.all().values()
-    data = pd.DataFrame(user)
-    print(data['description'])
+    # user = User.objects.filter(user=request.user)
+    dt = Calculater.objects.filter(user=request.user).values()
+    data = pd.DataFrame(dt)
+    data = data.rename(columns={
+        "cost": "هزینه",
+        "date": "تاریخ"
+    })
+    data['هزینه'] = data['هزینه'].apply(lambda x: f"{x:,.0f} تومان")
+    return render(request, 'show_data.html', 
+                    {
+                        'data': data.to_html(
+                            columns=['هزینه', 'تاریخ'], 
+                            col_space=5, index=False, classes="data-table",
+                            justify='center', border=None
+                        )
+                    }
+                )
