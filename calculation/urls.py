@@ -1,10 +1,11 @@
 from django.urls import path
-from calculation.views import index, calculater, show_data, insert_data
+from calculation.views import index, calculater, user_panel, insert_data, login
 
 
 urlpatterns = [
     path('', index, name='index'),
     path('calculater/', calculater, name='calculater'),
     path('insert-data/', insert_data, name='insert-data'),
-    path('show-data/', show_data, name='show-data'),
+    path('user-panel/', user_panel, name='user-panel'),
+    path('login/', login, name='login'),
 ]

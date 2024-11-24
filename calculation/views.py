@@ -33,8 +33,9 @@ def calculater(request):
     response = request.POST.get('next', '/')
     return HttpResponseRedirect(response)
     
-       
-def show_data(request):
+    
+@login_required   
+def user_panel(request):
     # user = User.objects.filter(user=request.user)
     dt = Calculater.objects.filter(user=request.user).values().order_by('-date', '-id')[:5]
     data = pd.DataFrame(dt)
@@ -44,7 +45,7 @@ def show_data(request):
         "description": "توضیح خرید"
     })
     data['هزینه'] = data['هزینه'].apply(lambda x: f"{x:,.0f} تومان")
-    return render(request, 'show_data.html', 
+    return render(request, 'user_panel.html', 
                     {
                         'data': data.to_html(
                             columns=['هزینه', 'تاریخ', "توضیح خرید"], 
@@ -53,3 +54,8 @@ def show_data(request):
                         )
                     }
                 )
+    
+    
+def login(request):
+    pass    
+    

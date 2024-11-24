@@ -9,12 +9,27 @@
     <title>صفحه اصلی</title>
 </head>
 <body>
-    <header>
-    <div class="nav">
-        <nav class="nav-bar">
-            <a href="">ثبت نام</a><a href="">ورود</a><a href="{% url 'insert-data' %}">صفحه محاسبه</a>
+    <div class="header">
+        <nav class="navbar fixed-top">
+          <div class="desktop-logo">
+            <a href="{% url 'index' %}" class="desktop">دخل و خرج</a>
+          </div>
+          <div class="name-logo">
+            <a href="#" style="color: #f6f5f0; font-size:15px ;">دخل و خرج</a>
+          </div>
+          <div class="menu-toggle" id="mobile-menu">
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+          </div>
+            <ul class="nav-list">
+                <li><a href="html/contact.html">ارتباط با ما</a></li>
+                <li><a href="html/aboutus.html">درباره ما</a></li>
+                <li><a href="404/404.html">خدمات ما</a></li>
+                <li><a href="404/404.html">مقاله ها</a></li>
+            </ul>
         </nav>
-    </div>
-</header>
+      </div>
+      <script src="javascript/script.js"></script>
 </body>
 </html>
