@@ -57,5 +57,5 @@ def user_panel(request):
     
     
 def login(request):
-    pass    
+    return render(request, 'login.html')    
     
