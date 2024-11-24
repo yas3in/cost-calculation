@@ -32,7 +32,15 @@
   }
 
 .data-table table tr:nth-child(even) {
-    background-color: rgba(150, 212, 212, 0.4);
+    background-color: rgb(181, 255, 201);
+  }
+
+.data-table table td:nth-child(even) {
+    background-color: rgb(181, 255, 201);
+  }
+
+.data-table table th:nth-child(even) {
+    background-color: rgb(181, 255, 201);
   }
 
 .data-notable {
