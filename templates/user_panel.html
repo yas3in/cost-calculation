@@ -23,14 +23,14 @@
               <span class="bar"></span>
           </div>
             <ul class="nav-list">
-                <li><a href="404/404.html">دلیل پیدایش</a></li>
+                <li><a href="{% url "index" %}">دلیل پیدایش</a></li>
                 <li><a href="{% url 'insert-data' %}">خرجتو بنویس</a></li>
                 {% if request.user.is_authenticated %}
-                    <li><a href="{% url 'login' %}">{{ request.user }} کاربر</a></li>
+                    <li><a href="{% url 'user-panel' %}">{{ request.user }} کاربر</a></li>
                 {% else %}
                     <li><a href="{% url 'login' %}">ورود / ثبت نام</a></li>
                 {% endif %}
-                    <li><a href="404/404.html">صفحه اصلی</a></li>
+                    <li><a href="{% url 'index' %}">صفحه اصلی</a></li>
             </ul>
         </nav>
       </div>

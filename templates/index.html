@@ -15,7 +15,7 @@
             <a href="{% url 'index' %}" class="desktop">دخل و خرج</a>
           </div>
           <div class="name-logo">
-            <a href="#" style="color: #f6f5f0; font-size:15px ;">دخل و خرج</a>
+            <a href="{% url 'index' %}">دخل و خرج</a>
           </div>
           <div class="menu-toggle" id="mobile-menu">
               <span class="bar"></span>
@@ -23,10 +23,14 @@
               <span class="bar"></span>
           </div>
             <ul class="nav-list">
-                <li><a href="html/contact.html">ارتباط با ما</a></li>
-                <li><a href="html/aboutus.html">درباره ما</a></li>
-                <li><a href="404/404.html">خدمات ما</a></li>
-                <li><a href="404/404.html">مقاله ها</a></li>
+                <li><a href="{% url "index" %}">دلیل پیدایش</a></li>
+                <li><a href="{% url 'insert-data' %}">خرجتو بنویس</a></li>
+                {% if request.user.is_authenticated %}
+                    <li><a href=" {% url 'user-panel' %} "> {{ request.user }} کاربر</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">ورود / ثبت نام</a></li>
+                {% endif %}
+                    <li><a href="{% url 'index' %}">صفحه اصلی</a></li>
             </ul>
         </nav>
       </div>

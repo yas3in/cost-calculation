@@ -10,10 +10,35 @@
 </head>
 
 <body>
+    <div class="header">
+        <nav class="navbar fixed-top">
+          <div class="desktop-logo">
+            <a href="{% url 'index' %}" class="desktop">دخل و خرج</a>
+          </div>
+          <div class="name-logo">
+            <a href="{% url 'index' %}">دخل و خرج</a>
+          </div>
+          <div class="menu-toggle" id="mobile-menu">
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+          </div>
+            <ul class="nav-list">
+                <li><a href="{% url "index" %}">دلیل پیدایش</a></li>
+                <li><a href="{% url 'insert-data' %}">خرجتو بنویس</a></li>
+                {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'login' %}">{{ request.user }} کاربر</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">ورود / ثبت نام</a></li>
+                {% endif %}
+                    <li><a href="{% url 'index' %}">صفحه اصلی</a></li>
+            </ul>
+        </nav>
+      </div>
+      <script src="javascript/script.js"></script>
     <div class="content">
         <form action="{% url 'calculater' %}" method="post">
                 {% csrf_token %} 
-                سلام {{request.user}} عزیز
                 <style>
                     .errorlist { display: none; } /* خطاهای فرم را پنهان می‌کند */
                     label { 
