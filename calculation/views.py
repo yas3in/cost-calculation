@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from calculation.models import Calculater
 from calculation.forms import GetDataForm
@@ -7,6 +7,7 @@ from django.views.decorators.http import require_POST
 import pandas as pd
 import jdatetime
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
 
 
 def index(request):
@@ -20,6 +21,7 @@ def insert_data(request):
         form.save()
         print(request.POST)
         return render(request, 'calculater.html', {'form': form})
+        return redirect
     else:
         return Http404
     
@@ -56,6 +58,15 @@ def user_panel(request):
                 )
     
     
-def login(request):
-    return render(request, 'login.html')    
-    
+def loged_in(request):
+    response = request.POST.get('next', '/')
+    if request.method == "GET":
+        return render(request, 'login.html')
+    else:
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return HttpResponseRedirect(response)
+        

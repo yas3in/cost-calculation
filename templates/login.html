@@ -29,20 +29,20 @@
                   <div class="center-wrap">
                     <div class="section text-center">
                       <h4 class="mb-4 pb-3">ورود</h4>
-                      <form action="{% url 'user-panel' %}">
+                      <form action="{% url 'user-panel' %}" method="post">
+                        {% csrf_token %}
                       <div class="form-group">
-                        <input type="email" name="logemail" class="form-style" placeholder="ایمیل" id="logemail"
+                        <input type="text" name="username" class="form-style" placeholder="نام کاربری" id="logemail"
                           autocomplete="off">
                         <i class="input-icon uil uil-at"></i>
                       </div>
                       <div class="form-group mt-2">
-                        <input type="password" name="logpass" class="form-style" placeholder="پسورد" id="logpass"
+                        <input type="password" name="password" class="form-style" placeholder="پسورد" id="logpass"
                           autocomplete="off">
                         <i class="input-icon uil uil-lock-alt"></i>
                       </div>
                       <button type="submit" href="#" class="btn mt-4">ثبت</button>
                       <p class="mb-0 mt-4 text-center"><a href="#0" class="link">فراموشی رمز</a></p>
-                    </form>
                     </div>
                   </div>
                 </div>
@@ -51,22 +51,24 @@
                     <div class="section text-center">
                       <h4 class="mb-4 pb-3">ثبت نام</h4>
                       <div class="form-group">
-                        <input type="text" name="logname" class="form-style" placeholder="نام شما" id="logname"
+                        <input type="text" name="username-sign" class="form-style" placeholder="نام شما" id="logname"
                           autocomplete="off">
                         <i class="input-icon uil uil-user"></i>
                       </div>
                       <div class="form-group mt-2">
-                        <input type="email" name="logemail" class="form-style" placeholder="ایمیل شما" id="logemail"
+                        <input type="email" name="email-sign" class="form-style" placeholder="ایمیل شما" id="logemail"
                           autocomplete="off">
                         <i class="input-icon uil uil-at"></i>
                       </div>
                       <div class="form-group mt-2">
-                        <input type="password" name="logpass" class="form-style" placeholder="پسورد شما"
+                        <input type="password" name="password-sign" class="form-style" placeholder="پسورد شما"
                           id="logpass" autocomplete="off">
                         <i class="input-icon uil uil-lock-alt"></i>
                       </div>
-                      <a href="#" class="btn mt-4">ثبت</a>
+                      <button type="submit" href="#" class="btn mt-4">ثبت</button>
                     </div>
+                    <input type="hideen" name="next" value="{{request.build_absolute_uri}}">
+                  </form>
                   </div>
                 </div>
               </div>

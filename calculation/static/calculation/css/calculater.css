@@ -1,9 +1,12 @@
-.errorlist { display: none; } /* خطاهای فرم را پنهان می‌کند */
+.errorlist { 
+    display: none; 
+}
+
 label { 
     display: none; 
     width: 100%;
-    }
- textarea {
+}
+textarea {
     height: 50px;
     width: 170px;
     padding: 5px;
@@ -11,7 +14,7 @@ label {
     border-radius: 4px;
     font-size: 13px;
     resize: none;
-    }
+}
 
 .content {
     background-color: aquamarine;
@@ -74,10 +77,6 @@ header {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
 }
 
 .navbar {
