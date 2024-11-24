@@ -9,7 +9,7 @@ import jdatetime
 class Calculater(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user")
     cost = models.BigIntegerField()
-    description = models.TextField(null=True, blank=True)
+    description = models.TextField(null=True, blank=True, max_length=30)
     date = jmodels.jDateField()
 
  

@@ -9,10 +9,28 @@
     <title>دیدن اطلاعات</title>
 </head>
 <body>
-    <div class="table">
-        {{data |safe}}
-        <div class="data-notable">
-            
+    <div class="container">
+        <div class="datas">
+            <div class="table">
+                <div class="data-table">
+                    <label>تراکنش های اخیر:</label>
+                    {{data |safe}}
+                </div>
+                <div class="data-notable">
+                    
+                </div>
+            </div>
+            <div class="table2">
+                <div class="cache">
+
+                </div>
+                <div class="data-notable2">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="side-bar">
+        {{data}}
         </div>
     </div>
 </body>

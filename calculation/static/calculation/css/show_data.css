@@ -1,9 +1,13 @@
+.container {
+    display: flex;
+}
+
 .data-table {
     background-color: rgb(255, 255, 181);
     text-align: center;
     direction: rtl;
     height: 230px;
-    width: 300px;
+    width: 330px;
     margin-left: 150px;
     margin-right: 150px;
     margin-top: 50px;
@@ -13,16 +17,30 @@
     opacity: 90%;
     border: none ;
     padding: 5px;
-
 }
+
+.data-table table{
+    height: 200px;
+    border: none ;
+    margin-top: 10px;
+    width: 330px;
+}
+
+.data-table table td {
+    font-size: 13px; /* اندازه متن در سلول‌ها */
+  }
+
+.data-table table tr:nth-child(even) {
+    background-color: rgba(150, 212, 212, 0.4);
+  }
 
 .data-notable {
     background-color: rgb(181, 239, 255);
     text-align: center;
     direction: rtl;
-    height: 220px;
-    width: 300px;
-    margin-right: 200px;
+    height: 230px;
+    width: 330px;
+    margin-right: 150px;
     margin-left: 50px;
     margin-top: 50px;
     text-align: center;
@@ -32,10 +50,60 @@
     border: none aqua;
     padding: 5px;
     float: right;
+    display: flex;
 }
 
 .table {
     width: 100%;
-    padding: 50px;
+    padding: 20px;
     display: flex;
+}
+.cache {
+    background-color: rgb(181, 255, 201);
+    text-align: center;
+    direction: rtl;
+    height: 230px;
+    width: 330px;
+    margin-left: 150px;
+    margin-right: 150px;
+    margin-top: 50px;
+    text-align: center;
+    direction: rtl;
+    box-shadow: 0px 5px 10px 5px rgb(137, 137, 137);
+    opacity: 90%;
+    border: none ;
+    padding: 5px;
+}
+
+.data-notable2 {
+    background-color: rgb(255, 181, 181);
+    text-align: center;
+    direction: rtl;
+    height: 230px;
+    width: 330px;
+    margin-right: 150px;
+    margin-left: 50px;
+    margin-top: 50px;
+    text-align: center;
+    direction: rtl;
+    box-shadow: 0px 5px 10px 5px rgb(137, 137, 137);
+    opacity: 90%;
+    border: none aqua;
+    float: right;
+    padding: 5px;
+    display: flex;
+}
+
+.table2 {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+}
+
+.side-bar{
+    width: 350px;
+    background-color: rgb(190, 190, 190);
+    height: 685px;
+    float: right;
+    margin-right: 0;
 }

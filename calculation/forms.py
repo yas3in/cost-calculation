@@ -8,8 +8,8 @@ import jdatetime
 class GetDataForm(forms.Form):
     user = forms.ModelChoiceField(queryset=User.objects.all(), widget=forms.HiddenInput)
     cost = forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': 'هزینه ات رو اینجا وارد کن'}), required=True)
-    description = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'توضیحات هزینه'}), required=False)
-    date = jforms.jDateField(required=True)
+    description = forms.CharField(max_length=30, required=False, widget=forms.TextInput(attrs={'placeholder': 'دلیل خرجتو کوتاه بنویس'}))
+    date = jforms.jDateField(required=True, widget=forms.TextInput(attrs={'placeholder': 'تاریخ خرج مثل:01-02-1403'}))
 
     
     def save(self):

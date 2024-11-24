@@ -29,25 +29,27 @@ def insert_data(request):
 def calculater(request):
     form = GetDataForm(request.POST)
     if form.is_valid() is not None:
-        form.save()
+        if len(form.cleaned_data.get('description')) > 30:
+            form.save()
     response = request.POST.get('next', '/')
     return HttpResponseRedirect(response)
     
        
 def show_data(request):
     # user = User.objects.filter(user=request.user)
-    dt = Calculater.objects.filter(user=request.user).values()
+    dt = Calculater.objects.filter(user=request.user).values().order_by('-date', '-id')[:5]
     data = pd.DataFrame(dt)
     data = data.rename(columns={
         "cost": "هزینه",
-        "date": "تاریخ"
+        "date": "تاریخ",
+        "description": "توضیح خرید"
     })
     data['هزینه'] = data['هزینه'].apply(lambda x: f"{x:,.0f} تومان")
     return render(request, 'show_data.html', 
                     {
                         'data': data.to_html(
-                            columns=['هزینه', 'تاریخ'], 
-                            col_space=5, index=False, classes="data-table",
+                            columns=['هزینه', 'تاریخ', "توضیح خرید"], 
+                            col_space=5, index=False,
                             justify='center', border=None
                         )
                     }
