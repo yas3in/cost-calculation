@@ -7,7 +7,7 @@ import jdatetime
 
 class GetDataForm(forms.Form):
     user = forms.ModelChoiceField(queryset=User.objects.all(), widget=forms.HiddenInput)
-    cost = forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': 'هزینه ات رو اینجا وارد کن'}), required=True)
+    cost = forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': "هزینه به تومان وارد کن"}), required=True)
     description = forms.CharField(max_length=30, required=False, widget=forms.TextInput(attrs={'placeholder': 'دلیل خرجتو کوتاه بنویس'}))
     date = jforms.jDateField(required=True, widget=forms.TextInput(attrs={'placeholder': 'تاریخ خرج مثل:01-02-1403'}))
 

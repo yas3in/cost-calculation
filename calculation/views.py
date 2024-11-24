@@ -29,8 +29,7 @@ def insert_data(request):
 def calculater(request):
     form = GetDataForm(request.POST)
     if form.is_valid() is not None:
-        if len(form.cleaned_data.get('description')) > 30:
-            form.save()
+        form.save()
     response = request.POST.get('next', '/')
     return HttpResponseRedirect(response)
     
