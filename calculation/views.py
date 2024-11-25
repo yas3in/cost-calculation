@@ -35,38 +35,47 @@ def calculater(request):
     response = request.POST.get('next', '/')
     return HttpResponseRedirect(response)
     
-    
-@login_required   
+ 
 def user_panel(request):
-    # user = User.objects.filter(user=request.user)
-    dt = Calculater.objects.filter(user=request.user).values().order_by('-date', '-id')[:5]
-    data = pd.DataFrame(dt)
-    data = data.rename(columns={
-        "cost": "هزینه",
-        "date": "تاریخ",
-        "description": "توضیح خرید"
-    })
-    data['هزینه'] = data['هزینه'].apply(lambda x: f"{x:,.0f} تومان")
-    return render(request, 'user_panel.html', 
-                    {
-                        'data': data.to_html(
-                            columns=['هزینه', 'تاریخ', "توضیح خرید"], 
-                            col_space=5, index=False,
-                            justify='center', border=None
-                        )
-                    }
-                )
-    
-    
-def loged_in(request):
-    response = request.POST.get('next', '/')
-    if request.method == "GET":
-        return render(request, 'login.html')
+    if request.user.is_authenticated:
+        # user = User.objects.filter(user=request.user)
+        dt = Calculater.objects.filter(user=request.user).values().order_by('-date', '-id')[:5]
+        data = pd.DataFrame(dt)
+        data = data.rename(columns={
+            "cost": "هزینه",
+            "date": "تاریخ",
+            "description": "توضیح خرید"
+        })
+        data['هزینه'] = data['هزینه'].apply(lambda x: f"{x:,.0f} تومان")
+        return render(request, 'user_panel.html', 
+                        {
+                            'data': data.to_html(
+                                columns=['هزینه', 'تاریخ', "توضیح خرید"], 
+                                col_space=5, index=False,
+                                justify='center', border=None
+                            )
+                        }
+                    )
     else:
+        return redirect('login')
+    
+    
+@require_POST
+def logs(request):
         username = request.POST.get("username")
         password = request.POST.get("password")
+        next = request.POST.get('next')
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect(response)
+            if next.endswith('login/'):
+                return redirect('user-panel')
+            else:
+                response = request.POST.get('next', '/')
+                return HttpResponseRedirect(response)
+        else:
+            return redirect('login')
         
+        
+def login_page(request):
+    return render(request, 'login.html')
