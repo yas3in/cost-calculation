@@ -4,6 +4,7 @@ from django.db.models.functions import Coalesce
 from django.db.models import Sum, Count, Q
 from django_jalali.db import models as jmodels
 import jdatetime
+import pandas as pd
 
 
 class Calculater(models.Model):
@@ -39,4 +40,23 @@ class Calculater(models.Model):
             return True
         except:
             return False
+        
+    
+    def recently_cost(request):
+        try:
+            dt = Calculater.objects.filter(user=request.user).values().order_by('-date', '-id')[:5]
+            data = pd.DataFrame(dt)
+            data = data.rename(columns={
+                "cost": "هزینه",
+                "date": "تاریخ",
+                "description": "توضیح خرید"
+            })
+            data['هزینه'] = data['هزینه'].apply(lambda x: f"{x:,.0f} تومان")
+            data = data.to_html(columns=['هزینه', 'تاریخ', "توضیح خرید"], 
+                            col_space=5, index=False, 
+                            justify='center', border=None
+                            )
+            return data
+        except:
+            return " "
     

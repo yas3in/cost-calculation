@@ -38,26 +38,9 @@ def calculater(request):
  
 def user_panel(request):
     if request.user.is_authenticated:
-        try:
-            dt = Calculater.objects.filter(user=request.user).values().order_by('-date', '-id')[:5]
-            data = pd.DataFrame(dt)
-            data = data.rename(columns={
-                "cost": "هزینه",
-                "date": "تاریخ",
-                "description": "توضیح خرید"
-            })
-            data['هزینه'] = data['هزینه'].apply(lambda x: f"{x:,.0f} تومان")
-            return render(request, 'user_panel.html', 
-                            {
-                                'data': data.to_html(
-                                    columns=['هزینه', 'تاریخ', "توضیح خرید"], 
-                                    col_space=5, index=False,
-                                    justify='center', border=None
-                                )
-                            }
-                        )
-        except:
-            return render(request, 'user_panel.html',)
+        data = Calculater.recently_cost(request)
+        return render(request, 'user_panel.html', 
+                            {'data': data})
     else:
         return redirect('login')
     
@@ -80,6 +63,7 @@ def signin(request):
             return response
     else:
         return redirect('login')
+
 
 @require_POST
 def signup(request):
