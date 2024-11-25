@@ -31,3 +31,12 @@ class Calculater(models.Model):
             create.save()
             return create
  
+ 
+    @classmethod
+    def create_user(cls, username, email, password):
+        try:
+            User.objects.create_user(username, email, password)
+            return True
+        except:
+            return False
+    
