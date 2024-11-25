@@ -25,12 +25,12 @@
             <ul class="nav-list">
                 <li><a href="{% url "index" %}">دلیل پیدایش</a></li>
                 <li><a href="{% url 'insert-data' %}">خرجتو بنویس</a></li>
-                {% if request.user.is_authenticated == True %}
-                    <li><a href="{% url 'user-panel' %}"> {{ request.user }} کاربر</a></li>
+                {% if request.user.is_authenticated %}
+                <li><a href="{% url 'user-panel' %}">پنل کاربری</a></li>
                 {% else %}
-                    <li><a href="{% url 'login' %}">ورود / ثبت نام</a></li>
+                <li><a href="{% url 'login' %}">ورود / ثبت نام</a></li>
                 {% endif %}
-                    <li><a href="{% url 'index' %}">صفحه اصلی</a></li>
+                <li><a href="{% url 'index' %}">صفحه اصلی</a></li>
             </ul>
         </nav>
       </div>
