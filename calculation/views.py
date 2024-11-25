@@ -63,27 +63,35 @@ def user_panel(request):
     
     
 @require_POST
-def logs(request):
+def signin(request):
     response = HttpResponseRedirect(request.POST.get('next', '/'))
 
     next = request.POST.get('next')
     
-    username_sign = request.POST.get("username-sign")
-    email_sign = request.POST.get("email-sign")
-    password_sign = request.POST.get("password-sign")
-    
     username = request.POST.get("username")
     password = request.POST.get("password")
     
-    if username_sign and username_sign and username_sign is not None:
-        sign_up = Calculater.create_user(username_sign, email_sign, password_sign)
-        if sign_up:
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+        if next.endswith('login/'):
             return redirect('user-panel')
         else:
-            return redirect('login')
-    elif username or password is not None:
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
+            return response
+    else:
+        return redirect('login')
+
+@require_POST
+def signup(request):
+    response = HttpResponseRedirect(request.POST.get('next', '/'))
+    next = request.POST.get('next')
+    username = request.POST.get("username")
+    email = request.POST.get("email")
+    password = request.POST.get("password")
+    if username and username and username is not None:
+        sign_up = Calculater.create_user(username, email, password)
+        if sign_up:
+            user = authenticate(request, username=username, password=password)
             login(request, user)
             if next.endswith('login/'):
                 return redirect('user-panel')
@@ -92,8 +100,8 @@ def logs(request):
         else:
             return redirect('login')
     else:
-        return redirect('login')
-        
+        return Http404
+
         
 def login_page(request):
     if request.user.is_authenticated:
