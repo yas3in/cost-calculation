@@ -5,6 +5,7 @@ from django.db.models import Sum, Count, Q
 from django_jalali.db import models as jmodels
 import jdatetime
 import pandas as pd
+import plotly.express as px
 
 
 class Calculater(models.Model):
@@ -59,4 +60,25 @@ class Calculater(models.Model):
             return data
         except:
             return " "
-    
+        
+        
+    def monthly_cost(request):
+        month = jdatetime.date.today()
+        data = Calculater.objects.filter(user=request.user).values()
+        df = pd.DataFrame(data)
+
+        # تبدیل تاریخ شمسی به میلادی برای عملیات فیلتر
+        df['GregorianDate'] = df['date'].apply(lambda x: x.togregorian())
+
+        # تبدیل به datetime میلادی
+        df['GregorianDate'] = pd.to_datetime(df['GregorianDate'])
+        df['date'] = df['GregorianDate'].dt.month == month.month
+
+        # تبدیل تاریخ میلادی فیلتر شده به شمسی برای نمایش
+        df['date'] = df['GregorianDate'].apply(lambda x: jdatetime.datetime.fromgregorian(datetime=x))
+        df['cost'] = df['cost'].apply(lambda x: f"{x:,.0f} تومان")
+        
+        fig = px.bar(y=df['date'], x=df['cost'], title="هزینه های ماه جاری")
+        fig.update_yaxes(title="date", tickformat="%Y-%m-%d")
+        chart_html = fig.to_html(full_html=False)
+        return chart_html

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ماه جاری</title>
+</head>
+<body>
+    <style>
+        /* استایل دادن به div که نمودار داخل آن قرار می‌گیرد */
+        #chart {
+            width: 80%;   /* عرض 80% از صفحه */
+            height: 500px;  /* ارتفاع 500 پیکسل */
+            margin: 0 auto;  /* مرکز کردن نمودار */
+            border: none;
+            border-radius: 10px;  /* گوشه‌های گرد */
+            background-color: #f9f9f9;  /* پس‌زمینه خاکی روشن */
+            padding: 0;
+        }
+
+        /* استایل برای عنوان نمودار */
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 24px;
+
+        }
+    </style>
+    <div id="chart">{{ monthly | safe }}</div>
+</body>
+</html>

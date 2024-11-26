@@ -8,6 +8,7 @@ import pandas as pd
 import jdatetime
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
+import plotly.express as px
 
 
 def index(request):
@@ -19,9 +20,7 @@ def insert_data(request):
     form = GetDataForm({'date': jdatetime.date.today(), 'user': request.user})
     if form.is_valid() is not None:
         form.save()
-        print(request.POST)
         return render(request, 'calculater.html', {'form': form})
-        return redirect
     else:
         return Http404
     
@@ -38,9 +37,9 @@ def calculater(request):
  
 def user_panel(request):
     if request.user.is_authenticated:
-        data = Calculater.recently_cost(request)
+        recently = Calculater.recently_cost(request)
         return render(request, 'user_panel.html', 
-                            {'data': data})
+                            {'recently': recently})
     else:
         return redirect('login')
     
@@ -92,3 +91,12 @@ def login_page(request):
         return redirect('user-panel')
     else:
         return render(request, 'login.html')
+
+def test(request):
+    if request.user.is_authenticated:
+        chart_html = Calculater.monthly_cost(request)
+        return render(request, 'test.html', 
+                            {'monthly': chart_html})
+    else:
+        return redirect('login')
+    
