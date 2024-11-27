@@ -100,3 +100,26 @@ def test(request):
     else:
         return redirect('login')
     
+
+@login_required
+def user_information(request):
+    pass
+
+
+def poshtibani(request):
+    pass
+
+
+def help(request):
+    pass
+
+
+@login_required
+def exit(request):
+    pass
+
+
+@login_required
+def chart(request):
+    pass
+    

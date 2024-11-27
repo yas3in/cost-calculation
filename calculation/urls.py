@@ -1,14 +1,19 @@
 from django.urls import path
-from calculation.views import index, calculater, user_panel ,insert_data, signin, login_page, signup, test
+from calculation import views
 
 
 urlpatterns = [
-    path('', index, name='index'),
-    path('calculater/', calculater, name='calculater'),
-    path('insert-data/', insert_data, name='insert-data'),
-    path('user-panel/', user_panel, name='user-panel'),
-    path('signin/', signin, name='signin'),
-    path('signup/', signup, name='signup'),
-    path('login/', login_page, name='login'),
-    path('test/', test, name='test'),
+    path('', views.index, name='index'),
+    path('calculater/', views.calculater, name='calculater'),
+    path('insert-data/', views.insert_data, name='insert-data'),
+    path('user-panel/', views.user_panel, name='user-panel'),
+    path('signin/', views.signin, name='signin'),
+    path('signup/', views.signup, name='signup'),
+    path('login/', views.login_page, name='login'),
+    path('test/', views.test, name='test'),
+    path('chart/', views.chart, name='chart'),
+    path('help/', views.help, name='help'),
+    path('user-information/', views.user_information, name='user-information'),
+    path('exit/', views.user_information, name='exit'),
+    path('poshtibani/', views.poshtibani, name='poshtibani'),
 ]
