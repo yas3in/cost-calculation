@@ -38,8 +38,10 @@ def calculater(request):
 def user_panel(request):
     if request.user.is_authenticated:
         recently = Calculater.recently_cost(request)
+        variable_cost = Calculater.variable_cost(request)
         return render(request, 'user_panel.html', 
-                            {'recently': recently})
+                            {'recently': recently, 'least_cost': variable_cost['least_cost'], 
+                             'more_cost': variable_cost['more_cost'], 'costs': variable_cost['sum_cost']})
     else:
         return redirect('login')
     

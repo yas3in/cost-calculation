@@ -82,3 +82,16 @@ class Calculater(models.Model):
         fig.update_yaxes(title="date", tickformat="%Y-%m-%d")
         chart_html = fig.to_html(full_html=False)
         return chart_html
+
+
+    def variable_cost(request):
+        data = Calculater.objects.filter(user=request.user).values()
+        df = pd.DataFrame(data)
+        costs = df['cost'].sum()
+        more_cost = df['cost'].max()
+        least_cost = df['cost'].min()
+        costs = f"{costs:,}"
+        least_cost = f"{least_cost:,}"
+        more_cost = f"{more_cost:,}"
+        print(costs, more_cost, least_cost)
+        return {'sum_cost': costs, 'more_cost': more_cost, 'least_cost': least_cost}
