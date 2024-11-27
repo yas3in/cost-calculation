@@ -17,7 +17,7 @@ textarea {
 }
 
 body {
-    background-color: #ffffff;
+    background-image: url(../image/pexels-rdne-8292772.jpg);
 }
    
 .container {
@@ -38,7 +38,7 @@ body {
     width: 300px;
     opacity: 100%;
     margin: auto;
-    box-shadow: 0px 5px 10px 5px rgb(137, 137, 137);
+    box-shadow: 0px 5px 10px 5px rgb(42, 42, 42);
 }
 
 .content input{
