@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="calculation/css/partial/header.css">
+<header>
 <div class="header">
     <nav class="navbar fixed-top">
       <div class="desktop-logo">
@@ -13,7 +13,7 @@
           <span class="bar"></span>
       </div>
         <ul class="nav-list">
-          <li><a href="{% url "index" %}">دلیل پیدایش</a></li>
+          <li><a href="{% url 'index' %}">دلیل پیدایش</a></li>
           <li><a href="{% url 'insert-data' %}">خرجتو بنویس</a></li>
           {% if request.user.is_authenticated %}
           <li><a href="{% url 'user-panel' %}">پنل کاربری</a></li>
@@ -25,3 +25,4 @@
     </nav>
   </div>
   <script src="javascript/script.js"></script>
+</header>

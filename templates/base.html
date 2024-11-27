@@ -1,0 +1,22 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block page-title %}{% endblock page-title %}</title>
+    <link rel="stylesheet" href="{% block style %}{% endblock style %}">
+    <link rel="stylesheet" href="{% static 'calculation/css/partial/header.css' %}">
+    <link rel="stylesheet" href="{% static 'calculation/css/partial/footer.css' %}">
+</head>
+
+{% include "partial/header.html" %}
+<body>
+    <main>
+    {% block content %}{% endblock content %}
+    </main>
+    
+</body>
+{% include "partial/footer.html" %}
+</html>

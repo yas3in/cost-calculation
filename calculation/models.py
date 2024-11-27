@@ -54,7 +54,7 @@ class Calculater(models.Model):
             })
             data['هزینه'] = data['هزینه'].apply(lambda x: f"{x:,.0f} تومان")
             data = data.to_html(columns=['هزینه', 'تاریخ', "توضیح خرید"], 
-                            col_space=5, index=False, 
+                            col_space=5, index=False, bold_rows=None,
                             justify='center', border=None
                             )
             return data
