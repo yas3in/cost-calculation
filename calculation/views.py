@@ -109,7 +109,7 @@ def user_information(request):
 
 
 def poshtibani(request):
-    pass
+    return render(request, 'poshtibani.html')
 
 
 def help(request):
@@ -126,6 +126,7 @@ def chart(request):
     pass
     
 
+@login_required
 @require_POST
 def update_user(request):
     u = User.objects.get(username=request.user)

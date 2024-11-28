@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page-title %} پنل کاربری {% endblock page-title %}
+
+{% block style %} {% static 'calculation/css/poshtibani.css' %} {% endblock style %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="datas">
+            
+        </div>
+                
+        <div class="side-bar">
+            <p>
+                <a href="{% url 'user-panel' %}">پنل کاربری</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'insert-data' %}">افزودن هزینه جدید</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'chart' %}">نمودار هزینه ها</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'user-information' %}">نمایه کاربری</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'help' %}">راهنما</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'poshtibani' %}">تیکت به پشتیبانی</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'exit' %}">خروج</a>
+            </p>
+            <hr>
+        </div>
+    </div>
+    {% endblock content %}
