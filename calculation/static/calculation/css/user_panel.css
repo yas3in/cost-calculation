@@ -55,8 +55,18 @@
   }
 
 .data-table table th:nth-child(even) {
-    background-color: rgb(181, 255, 201);
+    background-color: rgb(255, 255, 181);
   }
+
+.data-table table th{
+    color: #980000;
+    border: none;
+}
+
+.data-table table tr{
+    color: black;
+    border: none;
+}
 
 .variable-cost {
     background-color: rgb(181, 239, 255);
@@ -74,11 +84,28 @@
     float: right;
 }
 
+.variable-cost ul {
+    margin-right: 30px;
+    margin-top: 5px;
+    list-style: georgian;
+}
+
+.variable-cost ul li {
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+}
+
+.variable-cost ul li h3 {
+    color: #980000;
+}
+
 .table {
     width: 100%;
     padding: 20px;
     display: flex;
 }
+
 .cache {
     background-color: rgb(181, 255, 201);
     text-align: center;
@@ -124,10 +151,10 @@
 .side-bar{
     width: 300px;
     background-color: rgb(45, 38, 38);
-    height: 685px;
+    height: 600px;
     float: right;
     margin-right: 0 auto;
-    margin-top: 20px;
+    margin-top: 100px;
     box-shadow: 0px 5px 10px 5px rgb(137, 137, 137);
     justify-content: right;
     justify-self: right;

@@ -16,17 +16,22 @@
                         {{recently |safe}}
                 </div>
                 <div class="variable-cost">
-                   <p>
-                        بیشترین هزینه  {{more_cost}} تومان
-                    </p>
+                    <ul>
+                        <li>
+                            <h3>یک سری اطلاعات از خرجای این ماهت</h3>
+                        </li>
+                   <li>
+                        بیشترین هزینه:  {{more_cost}} <b>تومان</b>
+                   </li>
 
-                    <p>
-                        کم ترین هزینه {{least_cost}} تومان
-                    </p>
+                    <li>
+                        کم ترین هزینه: {{least_cost}} <b>تومان</b>
+                    </li>
 
-                   <p>
-                        جمع کل هزینه ها {{costs}} تومان
-                    </p>
+                   <li>
+                        جمع کل هزینه ها: {{costs}} <b>تومان</b>
+                   </li>
+                </ul>
                 </div>
             </div>
             <div class="table2">
@@ -40,7 +45,11 @@
         </div>
         <div class="side-bar"> 
             <p>
-                <a href="{% url 'calculater' %}">افزودن هزینه جدید</a>
+                <a href="{% url 'user-panel' %}">پنل کاربری</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'insert-data' %}">افزودن هزینه جدید</a>
             </p>
             <hr>
             <p>

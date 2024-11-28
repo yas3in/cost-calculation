@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page-title %} پنل کاربری {% endblock page-title %}
+
+{% block style %} {% static 'calculation/css/user_information.css' %} {% endblock style %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="datas">
+            <div class="information">
+                <div class="form">
+                <form action="{% url 'update_user' %}" method="post">
+                    {% csrf_token %}
+                        <label for="username">نام کاربری</label><br>
+                        <input type="text" name="username" id="username" disabled value="{{user.username}}">
+                        
+                        <br>
+                        <label for="firstname">نام</label><br>
+                        <input type="text" name="firstname" id="firstname" value="{{user.first_name}}">   
+                        <br>
+                        
+                        <label for="lastname">نام خانوادگی</label><br>
+                        <input type="text" name="lastname" id="lastname" value="{{user.last_name}}"> 
+                        <br>
+                        <label for="email">ایمیل</label><br>
+                        <input type="email" name="email" value="{{user.email}}">
+                        
+                        <br>
+                    <button type="submit">ثبت تغییرات</button>
+                </div>    
+                </form>
+            </div>
+        </div>
+                
+        <div class="side-bar">
+            <p>
+                <a href="{% url 'user-panel' %}">پنل کاربری</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'insert-data' %}">افزودن هزینه جدید</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'chart' %}">نمودار هزینه ها</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'user-information' %}">نمایه کاربری</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'help' %}">راهنما</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'poshtibani' %}">تیکت به پشتیبانی</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'exit' %}">خروج</a>
+            </p>
+            <hr>
+        </div>
+    </div>
+    {% endblock content %}
+

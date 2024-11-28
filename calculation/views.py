@@ -105,7 +105,7 @@ def test(request):
 
 @login_required
 def user_information(request):
-    pass
+    return render(request, 'user_information.html')
 
 
 def poshtibani(request):
@@ -125,3 +125,11 @@ def exit(request):
 def chart(request):
     pass
     
+
+@require_POST
+def update_user(request):
+    u = User.objects.get(username=request.user)
+    u.first_name = request.POST.get("firstname")
+    u.last_name = request.POST.get("lastname")
+    u.save()
+    return redirect('user-information')
