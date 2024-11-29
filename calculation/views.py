@@ -94,6 +94,7 @@ def login_page(request):
     else:
         return render(request, 'login.html')
 
+
 def test(request):
     if request.user.is_authenticated:
         chart_html = Calculater.monthly_cost(request)
@@ -108,6 +109,7 @@ def user_information(request):
     return render(request, 'user_information.html')
 
 
+@login_required
 def poshtibani(request):
     return render(request, 'poshtibani.html')
 

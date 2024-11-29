@@ -3,13 +3,28 @@
 
 {% block page-title %} پنل کاربری {% endblock page-title %}
 
-{% block style %} {% static 'calculation/css/poshtibani.css' %} {% endblock style %}
+{% block style %} {% static 'calculation/css/ticket.css' %} {% endblock style %}
 
 
 {% block content %}
     <div class="container">
         <div class="datas">
-            
+            <div class="ticket">
+                <form action="{% url 'ticket' %}" method="post">
+                    <input type="hidden" name="user" id="username" value="{{request.user}}">
+                    <label for="type">دلیل تیکت شما چیست؟</label><br>
+                    <select name="type" id="type">
+                        <option value="volvo"> </option>
+                        <option value="volvo">اشکالات فنی</option>
+                        <option value="saab">اشکالات مالی</option>
+                        <option value="mercedes">اختلال یا باگ</option>
+                        <option value="audi">اشکالات دیگر</option>
+                    </select><br>
+                    <label for="text">متن تیکت خود را بنویسید</label><br>
+                    <input type="text" name="text" id="text"><br>
+                    <button type="submit">ارسال</button>
+                </form>
+                </div>
         </div>
                 
         <div class="side-bar">

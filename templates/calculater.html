@@ -8,6 +8,7 @@
 
 {% block content %}
     <div class="container">
+        <div class="datas">
         <div class="content">
             <form action="{% url 'calculater' %}" method="post">
                     {% csrf_token %} 
@@ -17,8 +18,41 @@
                     {{ form.as_p }}
                     <input type="hidden" name="next" value="{{ request.build_absolute_uri }}">
                 <button class="submit" type="submit" name="submit"> تایید </button>
+            
             </form>
         </div>
+    </div>
+        <div class="side-bar"> 
+            <p>
+                <a href="{% url 'user-panel' %}">پنل کاربری</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'insert-data' %}">افزودن هزینه جدید</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'chart' %}">نمودار هزینه ها</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'user-information' %}">نمایه کاربری</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'help' %}">راهنما</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'poshtibani' %}">تیکت به پشتیبانی</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'exit' %}">خروج</a>
+            </p>
+            <hr>
+        </div>
+        
     </div>
 {% endblock content %}
 </body>
