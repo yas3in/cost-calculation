@@ -112,8 +112,9 @@ def poshtibani(request):
     return render(request, 'poshtibani.html')
 
 
+@login_required
 def help(request):
-    pass
+    return render(request, 'help.html')
 
 
 @login_required
