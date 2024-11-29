@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import Http404, HttpResponse, HttpResponseRedirect
-from calculation.models import Calculater
+from calculation.models import Calculater, Ticket
 from calculation.forms import GetDataForm
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
@@ -9,6 +9,7 @@ import jdatetime
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 import plotly.express as px
+from django.contrib import messages
 
 
 def index(request):
@@ -137,3 +138,17 @@ def update_user(request):
     u.last_name = request.POST.get("lastname")
     u.save()
     return redirect('user-information')
+
+
+@require_POST
+def ticket(request):
+    user = request.POST.get("user")
+    ticket = request.POST.get("ticket")
+    ticket_type = request.POST.get("ticket_type")
+    object = Ticket.create_tecket(user=user, ticket=ticket, ticket_type=ticket_type)
+    if object is None or False:
+        messages.success(request, "لطفا اطلاعات را به درستی وارد کنید")
+    else:
+        return redirect('ticket.html')
+        
+        

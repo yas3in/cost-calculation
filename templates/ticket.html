@@ -13,7 +13,7 @@
                 <form action="{% url 'ticket' %}" method="post">
                     <input type="hidden" name="user" id="username" value="{{request.user}}">
                     <label for="type">دلیل تیکت شما چیست؟</label><br>
-                    <select name="type" id="type">
+                    <select name="ticket_type" id="type">
                         <option value="volvo"> </option>
                         <option value="volvo">اشکالات فنی</option>
                         <option value="saab">اشکالات مالی</option>
