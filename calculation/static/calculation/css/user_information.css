@@ -76,9 +76,36 @@ form {
 
 form input {
     margin: 10px auto;
+    padding: 5px;
+    border-radius: 15px;
+    background-color: rgb(255, 78, 78);
+    width: 250px;
+    color: #ffffff;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+    box-shadow: 3px black;
 }
 
 form button {
     direction: ltr;
     display: inline;
+    padding: 5px;
+    background-color: #3a3ac9;
+    color: #ffffff;
+    margin-right: 180px;
+    border-radius: 15px;
+}
+
+form button:hover {
+    background-color: rgb(255, 78, 78);
+}
+
+form input:disabled {
+    background-color: rgb(255, 169, 169);
+}
+
+label {
+    margin-right: 10px;
+    padding-top: 10px;
+    margin-top: 30px;
 }
