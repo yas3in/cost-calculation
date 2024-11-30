@@ -1,15 +1,12 @@
 from django.shortcuts import render, redirect
-from django.http import Http404, HttpResponse, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect
 from calculation.models import Calculater, Ticket
 from calculation.forms import GetDataForm
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
-import pandas as pd
 import jdatetime
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-import plotly.express as px
-from django.contrib import messages
 
 
 def index(request):
@@ -96,10 +93,11 @@ def login_page(request):
         return render(request, 'login.html')
 
 
-def test(request):
+@login_required
+def chart(request):
     if request.user.is_authenticated:
         chart_html = Calculater.monthly_cost(request)
-        return render(request, 'test.html', 
+        return render(request, 'chart.html', 
                             {'monthly': chart_html})
     else:
         return redirect('login')
@@ -121,7 +119,6 @@ def exit(request):
         
 
 def exit_view(request):
-    print(request.POST['yesorno'])
     if request.POST['yesorno'] == "yes":
         logout(request)
         return redirect('index')
