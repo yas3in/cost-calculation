@@ -98,9 +98,19 @@ class Calculater(models.Model):
     
     
 class Ticket(models.Model):
+    technical = "technical"
+    finance = "finance"
+    bug = "bug"
+    other = "other"
+    TYPES = (
+        (technical, "technical"),
+        (finance, "finance"),
+        (bug, "bug"),
+        (other, "other")
+    )
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="ticket")
-    ticket_type = models.CharField(max_length=30)
-    tixket = models.TextField()
+    ticket_type = models.CharField(max_length=30, choices=TYPES)
+    ticket = models.TextField()
     
     
     @classmethod
