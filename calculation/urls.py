@@ -17,4 +17,5 @@ urlpatterns = [
     path('exit/', views.user_information, name='exit'),
     path('poshtibani/', views.poshtibani, name='poshtibani'),
     path('update_user/', views.update_user, name='update_user'),
+    path('ticket/', views.ticket, name='ticket'),
 ]

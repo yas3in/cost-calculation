@@ -7,23 +7,44 @@
 
 
 {% block content %}
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <div class="container">
         <div class="datas">
+            <div class="success-message" id="success-message">
+                پیام شما با موفقیت ارسال شد! 🎉
+              </div>
             <div class="ticket">
                 <form action="{% url 'ticket' %}" method="post">
+                {% csrf_token %}
                     <input type="hidden" name="user" id="username" value="{{request.user}}">
                     <label for="type">دلیل تیکت شما چیست؟</label><br>
                     <select name="ticket_type" id="type">
-                        <option value="volvo"> </option>
-                        <option value="volvo">اشکالات فنی</option>
-                        <option value="saab">اشکالات مالی</option>
-                        <option value="mercedes">اختلال یا باگ</option>
-                        <option value="audi">اشکالات دیگر</option>
+                        <b> <option value="none"> </option> </b>
+                        <b> <option value="technical">اشکالات فنی</option> </b>
+                        <b> <option value="finance">اشکالات مالی</option> </b>
+                        <b> <option value="bug">اختلال یا باگ</option> </b>
+                        <b> <option value="other">اشکالات دیگر</option> </b>
                     </select><br>
                     <label for="text">متن تیکت خود را بنویسید</label><br>
-                    <input type="text" name="text" id="text"><br>
+                    <textarea name="text" id="text"></textarea>
                     <button type="submit">ارسال</button>
                 </form>
+                <script>
+                    const successMessage = document.getElementById('success-message');
+                    successMessage.style.display = 'block';
+                    setTimeout(() => {
+                        successMessage.style.display = 'none';
+                      }, 3000);
+
+                    tinymce.init({
+                        selector: 'text',
+                        menubar: true,
+                        plugins: 'lists link image',
+                        toolbar: 'bold italic underline | bullist numlist | link',
+                        directionality: 'rtl', // برای راست‌چین
+                        height: 300
+                      });
+                </script>
                 </div>
         </div>
                 

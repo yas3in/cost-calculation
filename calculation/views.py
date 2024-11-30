@@ -112,7 +112,7 @@ def user_information(request):
 
 @login_required
 def poshtibani(request):
-    return render(request, 'poshtibani.html')
+    return render(request, 'ticket.html')
 
 
 @login_required
@@ -147,8 +147,10 @@ def ticket(request):
     ticket_type = request.POST.get("ticket_type")
     object = Ticket.create_tecket(user=user, ticket=ticket, ticket_type=ticket_type)
     if object is None or False:
-        messages.success(request, "لطفا اطلاعات را به درستی وارد کنید")
+        messages.success(request, "تیکت شما به پشتیبانی ارسال شد و به زودی به شما پاسخ خواهیم داد")
+        return redirect('poshtibani')
     else:
-        return redirect('ticket.html')
+        messages.success(request, "لطفا اطلاعات رو به درستی وارد کنید")
+        return redirect('poshtibani')
         
         
