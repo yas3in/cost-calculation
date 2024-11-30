@@ -132,6 +132,10 @@ def exit_view(request):
 def chart(request):
     pass
     
+    
+def test(request):
+    pass
+
 
 @login_required
 @require_POST
