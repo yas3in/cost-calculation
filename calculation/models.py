@@ -115,13 +115,13 @@ class Ticket(models.Model):
     
     @classmethod
     def create_tecket(request, user, ticket_type, ticket):
-        if user or ticket_type or ticket is None:
-            return None
-        try:
-            user = User.objects.get(user=user)
-            Ticket.objects.create(
-                user=user, ticket_type=ticket_type, ticket=ticket                
-            )
-            return True
-        except:
-            return False
+        # if user or ticket_type or ticket is None:
+        #     return None
+        # try:
+        user = User.objects.get(user=request.user)
+        Ticket.objects.create(
+            user=user.user, ticket_type=ticket_type, ticket=ticket                
+        )
+        return True
+    # except:
+    #     return False

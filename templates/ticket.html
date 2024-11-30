@@ -10,9 +10,17 @@
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <div class="container">
         <div class="datas">
-            <div class="success-message" id="success-message">
-                پیام شما با موفقیت ارسال شد! 🎉
+            {% if text == 0 %}
+            <div class="success-message" id="success-message" style="background-color: rgb(255, 126, 126);">
+                لطفا اطلاعات را به درستی وارد کنید
               </div>
+            {% elif text == 1 %}
+            <div class="success-message" id="success-message" style="background-color: rgb(126, 255, 156);">
+                تیکت شما ارسال شد ممنونم از شما
+              </div>
+              {% else %}
+              <div class="success-message" style="display: none;"></div>
+              {% endif %}
             <div class="ticket">
                 <form action="{% url 'ticket' %}" method="post">
                 {% csrf_token %}

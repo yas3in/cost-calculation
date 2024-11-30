@@ -149,7 +149,8 @@ def update_user(request):
 
 @login_required
 def poshtibani(request):
-    return render(request, 'ticket.html')
+    text = 2
+    return render(request, 'ticket.html', {"text": text})
 
 
 @require_POST
@@ -157,10 +158,13 @@ def ticket(request):
     user = request.POST.get("user")
     ticket = request.POST.get("ticket")
     ticket_type = request.POST.get("ticket_type")
+    correct = 1
+    incorrect = 0
+    # if user or ticket is None or ticket_type == "none":
+    #     return render(request, "ticket.html", {"text": incorrect}) 
+    # else:
     object = Ticket.create_tecket(user=user, ticket=ticket, ticket_type=ticket_type)
-    if object is None or False:
-        return redirect('poshtibani')
-    else:
-        return redirect('poshtibani')
+    print(object)
+    return render(request, "ticket.html", {"text": correct})
         
         
