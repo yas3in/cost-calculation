@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page-title %} خارج شدن از صفحه کاربری {% endblock page-title %}
+
+{% block style %} {% static 'calculation/css/exit.css' %} {% endblock style %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="datas">
+            <div class="exit">
+                <form action="{% url 'exit_view' %}" method="post">
+                    {% csrf_token %}
+                    <h2>
+                        آیا میخواهید از حساب خود خارج شوید؟
+                    </h2>
+                    <input type="submit" name="yesorno" value="yes" id="yes">
+                    <input type="submit" name="yesorno" value="no" id="no">
+                </form>
+            </div>
+        </div>
+                
+        <div class="side-bar">
+            <p>
+                <a href="{% url 'user-panel' %}">پنل کاربری</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'insert-data' %}">افزودن هزینه جدید</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'chart' %}">نمودار هزینه ها</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'user-information' %}">نمایه کاربری</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'help' %}">راهنما</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'poshtibani' %}">تیکت به پشتیبانی</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'exit' %}">خروج</a>
+            </p>
+            <hr>
+        </div>
+    </div>
+    {% endblock content %}

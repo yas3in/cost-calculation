@@ -7,7 +7,7 @@ from django.views.decorators.http import require_POST
 import pandas as pd
 import jdatetime
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 import plotly.express as px
 from django.contrib import messages
 
@@ -111,18 +111,24 @@ def user_information(request):
 
 
 @login_required
-def poshtibani(request):
-    return render(request, 'ticket.html')
-
-
-@login_required
 def help(request):
     return render(request, 'help.html')
 
 
 @login_required
 def exit(request):
-    pass
+    return render(request, "exit.html")  
+        
+
+def exit_view(request):
+    print(request.POST['yesorno'])
+    if request.POST['yesorno'] == "yes":
+        logout(request)
+        return redirect('index')
+    elif request.POST['yesorno'] == "no":
+        return redirect('user-panel')
+    else:
+        return render(request, "exit.html")
 
 
 @login_required
@@ -140,6 +146,11 @@ def update_user(request):
     return redirect('user-information')
 
 
+@login_required
+def poshtibani(request):
+    return render(request, 'ticket.html')
+
+
 @require_POST
 def ticket(request):
     user = request.POST.get("user")
@@ -147,10 +158,8 @@ def ticket(request):
     ticket_type = request.POST.get("ticket_type")
     object = Ticket.create_tecket(user=user, ticket=ticket, ticket_type=ticket_type)
     if object is None or False:
-        messages.success(request, "تیکت شما به پشتیبانی ارسال شد و به زودی به شما پاسخ خواهیم داد")
         return redirect('poshtibani')
     else:
-        messages.success(request, "لطفا اطلاعات رو به درستی وارد کنید")
         return redirect('poshtibani')
         
         
