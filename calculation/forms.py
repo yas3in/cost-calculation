@@ -46,7 +46,7 @@ class CreateTicketForm(forms.Form):
     
 class IncomeForm(forms.Form):
     user = forms.ModelChoiceField(queryset=User.objects.all(), widget=forms.HiddenInput)
-    income = forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': "درآمد ثابتت چقدره؟", 'class': 'income'}), required=True)
+    income = forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': "به تومان بنویس", 'class': 'income'}), label="درآمد ثابتت در ماه چقدره؟", required=True)
     purpose = forms.CharField(widget=forms.TextInput(attrs={'class': 'ticket'}), label="یک هدف رو ثبت کن تا کمکت کنم بهش برسی")
     lateral = forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': "به تومان"}), label="اگه درآمد جانبی هم داری وارد کن", required=False)
     

@@ -19,4 +19,6 @@ urlpatterns = [
     path('poshtibani/', views.poshtibani, name='poshtibani'),
     path('update_user/', views.update_user, name='update_user'),
     path('ticket/', views.ticket, name='ticket'),
+    path('income/', views.income, name='income'),
+    path('income-view/', views.income_view, name='income-view'),
 ]

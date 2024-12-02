@@ -21,7 +21,7 @@ class Calculater(models.Model):
     def add(cls, user, cost, date, description):
         if user and cost:
             if date is None:
-                date=jdatetime.date.today()
+                date = jdatetime.date.today()
             create = Calculater.objects.create(
                 user=user,
                 cost=cost,
@@ -123,3 +123,18 @@ class Income(models.Model):
     
     def __str__(self):
         return f"{self.user} - {self.income}"
+    
+    
+    @classmethod
+    def add(cls, user, income, purpose, lateral, date):
+        if date is None:
+            date = jdatetime.date.today()
+            object = Income.objects.create(
+                user=user,
+                income=income,
+                purpose=purpose,
+                lateral=lateral,
+                date=date
+            )
+            object.save()
+            return object

@@ -158,7 +158,17 @@ def update_user(request):
     return redirect('user-information')
 
 
+@require_POST
 @login_required
 def income_view(request):
+    form = IncomeForm(request.POST)
+    if form.is_valid() is not None:
+        form.save()
+    return redirect('income')
+
+
+@login_required
+def income(request):
     form = IncomeForm({'user': request.user})
     return render(request, 'income.html', {'form': form})
+    

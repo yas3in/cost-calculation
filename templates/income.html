@@ -4,17 +4,17 @@
 
 {% block page-title %} خرجتو بنویس | دخل و خرج {% endblock page-title %}
 
-{% block style %} {% static 'calculation/css/calculater.css' %} {% endblock style %}
+{% block style %} {% static 'calculation/css/income.css' %} {% endblock style %}
 
 {% block content %}
     <div class="container">
         <div class="datas">
         <div class="content">
-            <form action="{% url 'calculater' %}" method="post">
+            <form action="{% url 'income-view' %}" method="post">
                     {% csrf_token %}
-                    <h4 class="cost-page"><a href="">صفحه ثبت هزینه</a></h4>
+                    <h4 class="income-page"><a href="">صفحه ثبت درآمد</a></h4>
                     {{ form.as_p }}
-                    <h6 class="income-page"><a href="">رفتن به صفحه درآمد</a></h6>
+                    <h6 class="cost-page"><a href="">رفتن به صفحه هزینه</a></h6>
                     <input type="hidden" name="next" value="{{ request.build_absolute_uri }}">
                 <button class="submit" type="submit" name="submit"> تایید </button>
             
@@ -31,7 +31,7 @@
             </p>
             <hr>
             <p>
-                <a href="{% url 'insert-data' %}">ثبت درآمد</a>
+                <a href="{% url 'income' %}">ثبت درآمد</a>
             </p>
             <hr>
             <p>
