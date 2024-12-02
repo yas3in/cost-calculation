@@ -111,3 +111,12 @@ class Ticket(models.Model):
             )
         object.save()
         return object
+
+
+class Income(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="incomme")
+    income = models.BigIntegerField()
+    
+    
+    def __str__(self) -> str:
+        return f"{self.user} - {self.income}"
