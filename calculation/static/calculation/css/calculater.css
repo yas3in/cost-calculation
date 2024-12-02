@@ -50,6 +50,15 @@ body {
     letter-spacing: 2px;
 }
 
+.income-page a {
+    text-decoration: none;
+    color: antiquewhite;
+}
+
+.cost-page a {
+    text-decoration: none;
+    color: antiquewhite;
+}
 
 .errorlist { 
     display: none; 
@@ -77,11 +86,11 @@ body {
     background-color: rgb(42, 42, 42);
     /* margin-left: 720px; */
     margin-right: 220px;
-    margin-top: 150px;
+    margin-top: 100px;
     text-align: center;
     direction: rtl;
     height: 220px;
-    padding-top: 40px;
+    padding-top: 30px;
     width: 300px;
     opacity: 100%;
     margin: auto;
