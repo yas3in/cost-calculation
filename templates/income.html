@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block page-title %} خرجتو بنویس | دخل و خرج {% endblock page-title %}
+
+{% block style %} {% static 'calculation/css/calculater.css' %} {% endblock style %}
+
+{% block content %}
+    <div class="container">
+        <div class="datas">
+        <div class="content">
+            <form action="{% url 'calculater' %}" method="post">
+                    {% csrf_token %}
+                    <h4 class="cost-page"><a href="">صفحه ثبت هزینه</a></h4>
+                    {{ form.as_p }}
+                    <h6 class="income-page"><a href="">رفتن به صفحه درآمد</a></h6>
+                    <input type="hidden" name="next" value="{{ request.build_absolute_uri }}">
+                <button class="submit" type="submit" name="submit"> تایید </button>
+            
+            </form>
+        </div>
+    </div>
+        <div class="side-bar"> 
+            <p>
+                <a href="{% url 'user-panel' %}">پنل کاربری</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'insert-data' %}">افزودن هزینه جدید</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'chart' %}">نمودار هزینه ها</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'user-information' %}">نمایه کاربری</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'help' %}">راهنما</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'poshtibani' %}">تیکت به پشتیبانی</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'exit' %}">خروج</a>
+            </p>
+            <hr>
+        </div>
+        
+    </div>
+{% endblock content %}
+</body>
+</html>
