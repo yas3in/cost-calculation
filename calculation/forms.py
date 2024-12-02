@@ -1,5 +1,5 @@
 from django import forms
-from calculation.models import Calculater, Ticket
+from calculation.models import Calculater, Ticket, Income
 from django.contrib.auth.models import User
 from django_jalali import forms as jforms
 import jdatetime
@@ -43,3 +43,19 @@ class CreateTicketForm(forms.Form):
         )
         return ticket
     
+    
+class IncomeForm(forms.Form):
+    user = forms.ModelChoiceField(queryset=User.objects.all(), widget=forms.HiddenInput)
+    income = forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': "درآمد ثابتت چقدره؟", 'class': 'income'}), required=True)
+    purpose = forms.CharField(widget=forms.TextInput(attrs={'class': 'ticket'}), label="یک هدف رو ثبت کن تا کمکت کنم بهش برسی")
+    lateral = forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': "به تومان"}), label="اگه درآمد جانبی هم داری وارد کن", required=False)
+    
+    
+    def save(self):
+        income = Income.add(
+            user=self.cleaned_data.get('user'),
+            income=self.cleaned_data.get('income'),
+            purpose=self.cleaned_data.get('purpose'),
+            lateral=self.cleaned_data.get('lateral')
+        )
+        return income

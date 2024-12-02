@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import Http404, HttpResponseRedirect
-from calculation.models import Calculater, Ticket
-from calculation.forms import GetDataForm, CreateTicketForm
+from calculation.models import Calculater
+from calculation.forms import GetDataForm, CreateTicketForm, IncomeForm
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 import jdatetime
@@ -156,3 +156,9 @@ def update_user(request):
     u.last_name = request.POST.get("lastname")
     u.save()
     return redirect('user-information')
+
+
+@login_required
+def income_view(request):
+    form = IncomeForm({'user': request.user})
+    return render(request, 'income.html', {'form': form})

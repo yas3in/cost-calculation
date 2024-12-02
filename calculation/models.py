@@ -116,7 +116,10 @@ class Ticket(models.Model):
 class Income(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="incomme")
     income = models.BigIntegerField()
+    purpose = models.CharField(max_length=48, default=" ")
+    lateral = models.BigIntegerField(null=True, blank=True)
+    date = jmodels.jDateField()
     
     
-    def __str__(self) -> str:
+    def __str__(self):
         return f"{self.user} - {self.income}"
