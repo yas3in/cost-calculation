@@ -93,35 +93,23 @@ class Calculater(models.Model):
         costs = f"{costs:,}"
         least_cost = f"{least_cost:,}"
         more_cost = f"{more_cost:,}"
-        print(costs, more_cost, least_cost)
         return {'sum_cost': costs, 'more_cost': more_cost, 'least_cost': least_cost}
     
     
 class Ticket(models.Model):
-    technical = "technical"
-    finance = "finance"
-    bug = "bug"
-    other = "other"
-    TYPES = (
-        (technical, "technical"),
-        (finance, "finance"),
-        (bug, "bug"),
-        (other, "other")
-    )
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="ticket")
-    ticket_type = models.CharField(max_length=30, choices=TYPES)
+    ticket_type = models.CharField(max_length=30)
     ticket = models.TextField()
     
     
+    def __str__(self):
+        return f"{self.user} {self.ticket} {self.ticket_type}"
+    
+    
     @classmethod
-    def create_tecket(request, user, ticket_type, ticket):
-        # if user or ticket_type or ticket is None:
-        #     return None
-        # try:
-        user = User.objects.get(user=request.user)
-        Ticket.objects.create(
-            user=user.user, ticket_type=ticket_type, ticket=ticket                
-        )
-        return True
-    # except:
-    #     return False
+    def add(cls, user, ticket_type, ticket):
+        object = Ticket.objects.create(
+            user=user, ticket_type=ticket_type, ticket=ticket
+            )
+        object.save()
+        return object

@@ -21,20 +21,14 @@
               {% else %}
               <div class="success-message" style="display: none;"></div>
               {% endif %}
-            <div class="ticket">
+            <div class="tickets">
                 <form action="{% url 'ticket' %}" method="post">
                 {% csrf_token %}
-                    <input type="hidden" name="user" id="username" value="{{request.user}}">
-                    <label for="type">دلیل تیکت شما چیست؟</label><br>
-                    <select name="ticket_type" id="type">
-                        <b> <option value="none"> </option> </b>
-                        <b> <option value="technical">اشکالات فنی</option> </b>
-                        <b> <option value="finance">اشکالات مالی</option> </b>
-                        <b> <option value="bug">اختلال یا باگ</option> </b>
-                        <b> <option value="other">اشکالات دیگر</option> </b>
-                    </select><br>
-                    <label for="text">متن تیکت خود را بنویسید</label><br>
-                    <textarea name="text" id="text"></textarea>
+                    
+                    <label for="ticket_type">{{ form.ticket_type.label }}</label><br>
+                    {{ form.ticket_type }} <br>
+                    <label for="ticket">{{ form.ticket.label }}</label><br>
+                    {{ form.ticket }} <br>
                     <button type="submit">ارسال</button>
                 </form>
                 <script>

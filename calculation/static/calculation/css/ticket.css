@@ -50,7 +50,25 @@ body {
     letter-spacing: 2px;
 }
 
-.ticket {
+.errorlist { 
+    display: none; 
+}
+
+/* label { 
+    display: none; 
+    width: 100%;
+} */
+textarea {
+    height: 50px;
+    width: 170px;
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-size: 13px;
+    resize: none;
+}
+
+.tickets {
     width: 500px;
     direction: rtl;
     justify-content: center;
@@ -87,7 +105,7 @@ form select {
     color: black;
 }
 
-form #text {
+.ticket {
     padding: 5px;
     height: 70px;
     width: 300px;
@@ -104,3 +122,5 @@ form button {
     background-color: cadetblue;
     color: #ffffff;
 }
+
+

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import Http404, HttpResponseRedirect
 from calculation.models import Calculater, Ticket
-from calculation.forms import GetDataForm
+from calculation.forms import GetDataForm, CreateTicketForm
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 import jdatetime
@@ -16,11 +16,7 @@ def index(request):
 @login_required
 def insert_data(request):
     form = GetDataForm({'date': jdatetime.date.today(), 'user': request.user})
-    if form.is_valid() is not None:
-        form.save()
-        return render(request, 'calculater.html', {'form': form})
-    else:
-        return Http404
+    return render(request, 'calculater.html', {'form': form})
     
  
 @require_POST
@@ -32,6 +28,21 @@ def calculater(request):
     response = request.POST.get('next', '/')
     return HttpResponseRedirect(response)
     
+
+@login_required
+def poshtibani(request):
+    form = CreateTicketForm({'user': request.user})
+    return render(request, 'ticket.html', {'form': form})
+
+
+@login_required
+@require_POST
+def ticket(request):
+    form = CreateTicketForm(request.POST)
+    if form.is_valid() is not None:
+        form.save()
+    return redirect('poshtibani')
+        
  
 def user_panel(request):
     if request.user.is_authenticated:
@@ -145,26 +156,3 @@ def update_user(request):
     u.last_name = request.POST.get("lastname")
     u.save()
     return redirect('user-information')
-
-
-@login_required
-def poshtibani(request):
-    text = 2
-    return render(request, 'ticket.html', {"text": text})
-
-
-@require_POST
-def ticket(request):
-    user = request.POST.get("user")
-    ticket = request.POST.get("ticket")
-    ticket_type = request.POST.get("ticket_type")
-    correct = 1
-    incorrect = 0
-    # if user or ticket is None or ticket_type == "none":
-    #     return render(request, "ticket.html", {"text": incorrect}) 
-    # else:
-    object = Ticket.create_tecket(user=user, ticket=ticket, ticket_type=ticket_type)
-    print(object)
-    return render(request, "ticket.html", {"text": correct})
-        
-        

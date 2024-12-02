@@ -1,5 +1,5 @@
 from django import forms
-from calculation.models import Calculater
+from calculation.models import Calculater, Ticket
 from django.contrib.auth.models import User
 from django_jalali import forms as jforms
 import jdatetime
@@ -20,3 +20,26 @@ class GetDataForm(forms.Form):
             date=self.cleaned_data.get('date')
         )
         return calculater
+    
+    
+class CreateTicketForm(forms.Form):
+    TYPES = (
+        ("none", " "),
+        ("technical", "اشکالات فنی"),
+        ("finance", "اشکالات مالی"),
+        ("bug", "اختلال یا باگ"),
+        ("other", "اشکالات دیگر")
+    )
+    user = forms.ModelChoiceField(queryset=User.objects.all(), widget=forms.HiddenInput)
+    ticket_type = forms.ChoiceField(choices=TYPES, widget=forms.Select(attrs={'class': 'ticket_type'}), label="دلیل تیک شما چیست؟")
+    ticket = forms.CharField(widget=forms.TextInput(attrs={'class': 'ticket'}), label="متن تیکت خود را بنویسید.")
+
+
+    def save(self):
+        ticket = Ticket.add(
+            user=self.cleaned_data.get('user'),
+            ticket=self.cleaned_data.get('ticket'),
+            ticket_type=self.cleaned_data.get('ticket_type')
+        )
+        return ticket
+    
