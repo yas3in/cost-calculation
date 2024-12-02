@@ -68,7 +68,7 @@
     border: none;
 }
 
-.variable-cost {
+.income {
     background-color: rgb(181, 239, 255);
     text-align: center;
     direction: rtl;
@@ -80,6 +80,30 @@
     direction: rtl;
     box-shadow: 0px 5px 10px 5px rgb(137, 137, 137);
     opacity: 90%;
+    padding: 5px;
+    float: right;
+}
+
+.table {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+}
+
+.variable-cost {
+    background-color: rgb(181, 255, 201);
+    text-align: center;
+    direction: rtl;
+    height: 250px;
+    width: 350px;
+    margin-left: 150px;
+    margin-right: 150px;
+    margin-top: 50px;
+    text-align: right;
+    direction: rtl;
+    box-shadow: 0px 5px 10px 5px rgb(137, 137, 137);
+    opacity: 90%;
+    border: none ;
     padding: 5px;
     float: right;
 }
@@ -98,29 +122,6 @@
 
 .variable-cost ul li h3 {
     color: #980000;
-}
-
-.table {
-    width: 100%;
-    padding: 20px;
-    display: flex;
-}
-
-.cache {
-    background-color: rgb(181, 255, 201);
-    text-align: center;
-    direction: rtl;
-    height: 250px;
-    width: 350px;
-    margin-left: 150px;
-    margin-right: 150px;
-    margin-top: 50px;
-    text-align: center;
-    direction: rtl;
-    box-shadow: 0px 5px 10px 5px rgb(137, 137, 137);
-    opacity: 90%;
-    border: none ;
-    padding: 5px;
 }
 
 .data-notable2 {

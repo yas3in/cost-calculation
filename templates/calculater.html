@@ -11,8 +11,10 @@
         <div class="datas">
         <div class="content">
             <form action="{% url 'calculater' %}" method="post">
-                    {% csrf_token %} 
+                    {% csrf_token %}
+                    <label class="cost-page">صفحه ثبت هزینه</label>
                     {{ form.as_p }}
+                    <h5 class="income-page">رفتن به صفحه درآمد</h5>
                     <input type="hidden" name="next" value="{{ request.build_absolute_uri }}">
                 <button class="submit" type="submit" name="submit"> تایید </button>
             
