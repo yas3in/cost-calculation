@@ -171,9 +171,5 @@ def income_view(request):
 def income(request):
     form = IncomeForm({'user': request.user})
     income = Income.objects.filter(user=request.user)
-    try:
-        inc = income[0]
-        return render(request, 'suggested.html', {'form': form, 'income': inc})
-    except:
-        return render(request, 'income.html', {'form': form})
+    return render(request, 'income.html', {'form': form})
     

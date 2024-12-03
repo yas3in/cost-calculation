@@ -54,7 +54,7 @@ body {
     margin-top: 150px;
 }
 
-.help-part {
+.suggested-part {
     padding: 30px;
     margin: 0 auto;
     width: 800px;
@@ -66,20 +66,20 @@ body {
     box-shadow: 0px 5px 10px 5px rgb(137, 137, 137);
 }
 
-.help-part ul {
+.suggested-part ul {
     list-style: lower-greek;
     font-family: Helvetica, sans-serif;
 }
 
-.help-part ul li{
+.suggested-part ul li{
     padding: 20px;
-    font-size: 25px;
+    font-size: 22px;
     color: #290f75;
     text-shadow: 0px 2px 2px #717171;
     
 }
 
-.help-part ul h3 {
+.suggested-part ul h3 {
     color: #6b2525;
     text-shadow: 0px 2px 2px #ffcfcf;
 }

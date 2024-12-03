@@ -3,33 +3,35 @@
 
 {% block page-title %} پنل کاربری {% endblock page-title %}
 
-{% block style %} {% static 'calculation/css/help.css' %} {% endblock style %}
+{% block style %} {% static 'calculation/css/suggested.css' %} {% endblock style %}
 
 
 {% block content %}
     <div class="container">
         <div class="datas">
-            <div class="help-part">
+            <div class="suggested-part">
                 <ul>
                     <li>
-                        <h3>نحوه کار با دخل و خرج</h3>
+                        <h3>
+                            اینارو یادت باشه...
+                        </h3>
                     </li>
                <li>
-                ابتدا در سایت ثبت نام میکنید و وارد پنل کاربری خود میشید
+                اثر پروانه ای میگه با روزی 10هزارتومن درسال 3،650،000 تومان صرفه جویی میشه...
                </li>
 
                 <li>
-                    از قسمت خرجتو بنویس یا افزوردن هزینه وارد صفحه اضافه کردن خرج میشید
+                در کنار کاری که میکنی همیشه کار خودتو هم داشته باش
                 </li>
 
                <li>
-                وارد پنل کاربری بشید و تراکنش ها و یک سری متغیرات رو ببینید
+                <mark><a href="{% url 'insert-data' %}" style="text-decoration: none;">هزینه هاتو یادداشت کن تا بتونی روشون تسلط پیدا کنی</a></mark>
                </li>
                <li>
-                ایراد، پیشنهاد، انتقاد خود را از صفحه تیکت به پشتیبانی به ما اعلام کنید
+                علاوه بر پول در زمان هم صرفه جویی کن، برنده میشی
                </li>
                <li>
-                برای خروج از حساب کاربری دکمه خروج را فشار دهید
+                در کنار پس انداز پولتو برای خودتم خرج کن و به خودت هدیه بده
                </li>
             </div>
         </div>
