@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import Http404, HttpResponseRedirect
-from calculation.models import Calculater
+from calculation.models import Calculater, Income
 from calculation.forms import GetDataForm, CreateTicketForm, IncomeForm
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
@@ -170,5 +170,10 @@ def income_view(request):
 @login_required
 def income(request):
     form = IncomeForm({'user': request.user})
-    return render(request, 'income.html', {'form': form})
+    income = Income.objects.filter(user=request.user)
+    try:
+        inc = income[0]
+        return render(request, 'suggested.html', {'form': form, 'income': inc})
+    except:
+        return render(request, 'income.html', {'form': form})
     

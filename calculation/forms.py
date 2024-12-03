@@ -47,7 +47,7 @@ class CreateTicketForm(forms.Form):
 class IncomeForm(forms.Form):
     user = forms.ModelChoiceField(queryset=User.objects.all(), widget=forms.HiddenInput)
     income = forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': "به تومان بنویس", 'class': 'income'}), label="درآمد ثابتت در ماه چقدره؟", required=True)
-    purpose = forms.CharField(widget=forms.TextInput(attrs={'class': 'ticket'}), label="یک هدف رو ثبت کن تا کمکت کنم بهش برسی")
+    purpose = forms.CharField(widget=forms.TextInput(attrs={'class': 'ticket', "title":"ترجیحا هدف کوتاه مدت بنویس"}), label="اگه هدفی از پس انداز داری بنویس:")
     lateral = forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': "به تومان"}), label="اگه درآمد جانبی هم داری وارد کن", required=False)
     
     
@@ -56,6 +56,7 @@ class IncomeForm(forms.Form):
             user=self.cleaned_data.get('user'),
             income=self.cleaned_data.get('income'),
             purpose=self.cleaned_data.get('purpose'),
-            lateral=self.cleaned_data.get('lateral')
+            lateral=self.cleaned_data.get('lateral'),
+            date=self.cleaned_data.get('date')
         )
         return income

@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page-title %} پنل کاربری {% endblock page-title %}
+
+{% block style %} {% static 'calculation/css/help.css' %} {% endblock style %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="datas">
+            <div class="help-part">
+                <ul>
+                    <li>
+                        <h3>نحوه کار با دخل و خرج</h3>
+                    </li>
+               <li>
+                ابتدا در سایت ثبت نام میکنید و وارد پنل کاربری خود میشید
+               </li>
+
+                <li>
+                    از قسمت خرجتو بنویس یا افزوردن هزینه وارد صفحه اضافه کردن خرج میشید
+                </li>
+
+               <li>
+                وارد پنل کاربری بشید و تراکنش ها و یک سری متغیرات رو ببینید
+               </li>
+               <li>
+                ایراد، پیشنهاد، انتقاد خود را از صفحه تیکت به پشتیبانی به ما اعلام کنید
+               </li>
+               <li>
+                برای خروج از حساب کاربری دکمه خروج را فشار دهید
+               </li>
+            </div>
+        </div>
+                
+        <div class="side-bar">
+            <p>
+                <a href="{% url 'user-panel' %}">پنل کاربری</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'insert-data' %}">افزودن هزینه جدید</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'income' %}">ثبت درآمد</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'chart' %}">نمودار هزینه ها</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'user-information' %}">نمایه کاربری</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'help' %}">راهنما</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'poshtibani' %}">تیکت به پشتیبانی</a>
+            </p>
+            <hr>
+            <p>
+                <a href="{% url 'exit' %}">خروج</a>
+            </p>
+            <hr>
+        </div>
+    </div>
+    {% endblock content %}
